@@ -612,6 +612,25 @@ function lunch()
         return 1
     fi
 
+    if [ "$CCACHE_DIR" ]
+    then
+        TMP_CCACHE_DIR=$(echo ${CCACHE_DIR%%/mk_*})
+        export CCACHE_DIR=$TMP_CCACHE_DIR/$product
+        if [ -z "$CCACHE_SIZE" ]; then
+            CCACHE_SIZE=16G
+        fi
+        if [ "$(uname)" = "Darwin" ] ; then
+            prebuilts/misc/darwin-x86/ccache/ccache -M $CCACHE_SIZE
+        else
+            prebuilts/misc/linux-x86/ccache/ccache -M $CCACHE_SIZE
+        fi
+    fi
+
+    if [ "$(which pngquant)" == "" ]
+    then
+        echo -e "\033[1;33;41mpngquant is not installed! Builds will be larger!\033[0m"
+    fi
+
     export TARGET_PRODUCT=$product
     export TARGET_BUILD_VARIANT=$variant
     export TARGET_BUILD_TYPE=release
