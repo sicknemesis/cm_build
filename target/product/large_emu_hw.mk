@@ -26,8 +26,6 @@ PRODUCT_PACKAGES := \
     Calculator \
     Calendar \
     CertInstaller \
-    Email \
-    Exchange2 \
     Gallery2 \
     LatinIME \
     Launcher2 \
@@ -36,7 +34,6 @@ PRODUCT_PACKAGES := \
     QuickSearchBox \
     Settings \
     Sync \
-    Updater \
     CalendarProvider \
     SyncProvider \
     bluetooth-health \
